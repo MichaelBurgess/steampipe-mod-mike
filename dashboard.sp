@@ -5,13 +5,13 @@ EOT
 }
 
 query "aws_s3_bucket_by_region" {
-  sql = "select region, count(*) from aws_s3_bucket group by region order by region desc"
+  sql = "select region, count(*) from aws_s3_bucket group by region order by count(*) desc"
 }
 
 dashboard "mike_dashboard" {
   title = "Mike Dashboard"
 
-  card {
+  card "aws_s3_bucket_count" {
     query = query.aws_s3_bucket_count
   }
 
